@@ -28,18 +28,16 @@ class WindowTodo(QMainWindow):
         self.txtTitle.setFocus()
 
     def Save(self):
+        widgetDate = self.dateDate.date()
+        selectedDate =str(widgetDate.day())+"/"+str(widgetDate.month())+"/"+str(widgetDate.year())
         if(self.state=="new"):
-            widgetDate = self.dateDate.date()
-            selectedDate =str(widgetDate.day())+"/"+str(widgetDate.month())+"/"+str(widgetDate.year())
             self.cur.execute("insert into todo (title,description,todotime) values (?, ?, ?)", (self.txtTitle.text(), self.txtDescription.toPlainText(),selectedDate))
-            self.con.commit()
-            self.FillTable()
+
         if(self.state=="edit"):
-            widgetDate = self.dateDate.date()
-            selectedDate =str(widgetDate.day())+"/"+str(widgetDate.month())+"/"+str(widgetDate.year())
             self.cur.execute("update todo set title=?,description=?,todotime=? where id=?", (self.txtTitle.text(), self.txtDescription.toPlainText(),selectedDate,self.id))
-            self.con.commit()
-            self.FillTable()
+            
+        self.con.commit()
+        self.FillTable()
         self.btnSave.setEnabled(False)
         self.btnDelete.setEnabled(False)
         
