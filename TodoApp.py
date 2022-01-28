@@ -48,7 +48,6 @@ class WindowTodo(QMainWindow):
         try:
             row = self.tblTodo.currentRow()
             id = self.tblTodo.item(row, 0).text()
-            print(id)
             self.cur.execute("delete from todo where id=?",(id,))
             self.con.commit()
             self.FillTable()
@@ -66,7 +65,6 @@ class WindowTodo(QMainWindow):
     
         self.tblTodo.setRowCount(0)
         for row in rows:
-            print(row[1])
             inx = rows.index(row)
             self.tblTodo.insertRow(inx)
             # add more if there is more columns in the database.
