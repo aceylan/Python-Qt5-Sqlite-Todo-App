@@ -1,5 +1,5 @@
 # Python-Qt-Todo-App
-Python Qt5 Todo Application
+Python Qt5 Todo Crud Application
 
 This Application made by python - Qt5 Library - Sqlite Database. 
 
